@@ -1,0 +1,155 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=2cm]{geometry}
+\usepackage{amsmath,amsthm,amsfonts,dsfont,graphicx,amssymb,amscd,wrapfig,varwidth,mdframed,hyperref,xcolor}
+\definecolor{penblue}{rgb}{0.2, 0.1, 0.6}
+\definecolor{white}{rgb}{1,1,1}
+\numberwithin{equation}{section}
+
+\begin{document}
+
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{ex}[thm]{Exercise}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{clm}[thm]{Claim}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{rem*}{Remark}
+\theoremstyle{definition}
+\newtheorem{defn}{Definition}[section]
+\newtheorem{eg}{Example}[section] 
+
+\title{Problem Set 2}
+    \author{Lectures 4, 5\\Homotopical Topology; Fomenko, Fuchs}
+    \date{Prokash Kumar Kundu}
+    \maketitle
+    
+\section{\normalsize{Lecture 4; Exercises 2, 3:}}
+Let $Y$ be a $H$-space. 
+\begin{defn}
+     We say $Y$ is an abelian $H$-space if the two maps
+    \begin{align*}
+         Y\times Y&\xrightarrow{\mu}Y\\ Y\times Y&\xrightarrow{\tilde{\mu}}Y\ \ \ [\tilde{\mu}(y,y'):= \mu(y',y)]
+    \end{align*} 
+     are homotopic.
+\end{defn}
+\begin{clm}
+    $\pi_b(X,Y)$ is an abelian group (natural w.r.t $X$) iff $Y$ is an abelian $H$-space.  
+\end{clm}
+\textbf{\emph{Proof:}} We already know that $\pi_b(X,Y)$ is a group (natural w.r.t $X$) iff $Y$ is a $H$-space, with multiplication in $\pi_b(X,Y)$ defined by $[f].[g]= [\mu_{*}(f,g)];\ \mu_{*}(f,g)(x):=\mu(f(x), g(x))$. Clearly this multiplication is commutative iff $\mu\sim\tilde{\mu}$. $\blacksquare$ 
+\begin{clm}
+    $\Omega\Omega Y$ is an abelian $H$-space
+\end{clm}
+\textbf{\emph{Proof:}} We take $f, g\in\Omega\Omega Y$. We treat them as maps $f,g:I\times I \rightarrow Y$, and define $$f*g(t,s):=\begin{cases}f(2t,s)\ \forall\ 0\leqslant t\leqslant\frac{1}{2}; \\ g(2t-1, s)\ \forall\ \frac{1}{2}\leqslant t\leqslant1\end{cases}$$ We claim that $f*g\sim g*f$. \\[8pt] 
+But indeed, we cant define $H:I\times I\times I\rightarrow Y$ as follows: 
+$$H(t,s,r)= \begin{cases}f(2t,s)\ \forall\ 0\leqslant t,r\leqslant\frac{1}{2}; \\ g(2t, s)\ \forall\ 0\leqslant t\leqslant\frac{1}{2},\ \frac{1}{2}\leqslant r\leqslant1;\\ g(2t-1,s)\ \forall\ \frac{1}{2}\leqslant t\leqslant1,\ 0\leqslant r\leqslant\frac{1}{2}; \\ f(2t-1, s)\ \forall\ \frac{1}{2}\leqslant t,r\leqslant1\end{cases}$$
+$H$ is clearly continuous on $[0,\frac{1}{2}]\times I\times [0,\frac{1}{2}],\ [0,\frac{1}{2}]\times I\times [\frac{1}{2},1],\ [\frac{1}{2},1]\times I\times [0,\frac{1}{2}],\ [\frac{1}{2},1]\times I\times [\frac{1}{2},1]$; and on their pairwise intersections is equal to $y_0$. So, by the pasting lemma, $H$ is continuous. \\ Clearly,
+\begin{align*}
+     H(t,s,0)= f*g(t,s)\\ H(t,s,1)=g*f(t,s)
+\end{align*}
+So $f*g\sim g*f$. $\blacksquare$ 
+\begin{cor}
+     $\pi_b(X,\Omega\Omega Y)$ is an abelian group (natural w.r.t $X$).
+\end{cor}
+$Q.E.D.$
+\begin{thm}[Hom-Tensor adjunction in the categoty of base-point topological spaces]
+    For locally compact Hausdorff base-point topological spaces $(X,x_0),\ (Y,y_0),\ (Z,z_0)$, we have, $$Map_b(X,Map_b(Y,Z))\cong Map_b(X\# Y, Z)$$
+\end{thm} 
+
+\section{\normalsize{Lecture 5, Exercises 4,5:}}
+Let $X=\bigcup^{\infty}_{q=0}{\bigcup_{i\in I_q}{e_q^i}}$ be a CW-complex with maps $f_q^i:e_q^i\rightarrow X$. 
+\begin{clm}\label{closed}
+     $K\subseteq X$ is closed iff $K\cap Y$ closed for all finite sub-complexes $Y$ of $X$. 
+\end{clm}
+\textbf{\emph{Proof:}} \textbf{(if)} $K\cap Y$ is closed for all finite sub-complexes $Y$ of $X$. \\ For all $e_q^i$, we define $C(e_q^i)=\bigcup^{q}_{k=0}{\bigcup_{j\in J_k}{e_k^j}}\subseteq X$; where we define $J_q$ recursively: \begin{align*}
+     J_q &=\{i\}\\ J_{k-1}&=\{i\in I_{k-1}|\exists j\in J_k, f_k^j(\partial e_k^j)\cap e_{k-1}^{i}\neq \varnothing\}\end{align*} . By axiom (C), $C(e_q^i)$ is a finite-subcomplex. Hence, $K\cap C(e_q^i)$ is closed for all $e_q^i$. \\ Hence, $(K\cap C(e_q^i))\cap \overline{e_q^i}$ is closed for all $e_q^i$, iff $K$ is closed in $X$. $\blacksquare$ \\[8pt] \textbf{(only if)} $K$ is closed in $X$ iff $K\cap \overline{e_q^i}$ is closed for all $e_q^i$. \\ Any finite sub-complex $Y$ is a finite union of $e_q^i$'s that is closed in $X$, so $K\cap Y$ is a finite union of $K\cap \overline{e_q^i}$, hence closed. $\blacksquare$
+\begin{cor}
+    $f:X\rightarrow Z$ is continuous iff $f|_Y$ is continuous for all finite sub-complexes $Y$ of $X$.  
+\end{cor}
+\textbf{\emph{Proof:}} $f:X\rightarrow Z$ is continuous iff forall $A$ closed in $Z$, $f^{-1}(A)$ is closed in $X$, (by Claim \ref{closed}) iff $f^{-1}(A)\cap Y$ is closed for all finite sub-complexes $Y$ of $X$. \\ $Q.E.D$ 
+\begin{clm}\label{compact}
+    Let $Y$ be a sub-complex of $X$. $Y$ is compact iff $Y$ is a finite sub-complex.
+\end{clm}
+\textbf{\emph{Proof:}} \textbf{(if)} Each $e_q^i$ is compact (by \emph{Heine-Borel}), so $e_q^i$'s are compact in $X$. If $Y$ is a finite sub-complex, it is a finite union of such compact sets, hence compact. $\blacksquare$ \\ [8pt]
+\textbf{(only if)} Take a sub-complex $Y=\bigcup^{\infty}_{k=0}{\bigcup_{j\in J_k}{e_k^j}}$; $J_k\subseteq I_k$, compact.\\ We claim that $\{int(e_k^j)|\ k\in\mathbb{N},j\in J_k\}$ covers $Y$. Indeed $y\in Y$ must be in $e_k^j$ for some $k,\ j$. If $y\notin int(e_k^j)$ then $y\in f_k^j(\partial e_k^j)$, hence $y\in e_{l}^{j'}$ as well for some $l<k$. By the {well-ordering principle} in $\mathbb{N}$, we shall be able to find $m\leqslant k,\ j'\in J_m$, such that $y\in int(e_m^{j'})$. \\ Clearly, no proper sub-cover of $\{int(e_k^j)|\ k\in\mathbb{N},j\in J_k\}$ covers $Y$, so if $Y$ is compact, $\bigcup_{k=0}^{\infty}{J_k}$ must be finite, \emph{i.e.} $Y$ must be a finite sub-complex. $\blacksquare$ 
+\begin{cor}
+     $X$ is compact (locally compact) iff it is finite (locally finite).
+\end{cor}
+Follows immediately from Claim \ref{compact}. $Q.E.D$
+
+\section{\normalsize{Lecture 5, Exercise 17:}}
+\subsection{\normalsize{The sphere, the projective plane, and the Klein bottle:}} 
+\begin{itemize}
+     \item For $S^2$, we take $S^2=e^0\cup e^2$ with $f^2(\partial e^2)=e^0$.
+     \item For $\mathbb{R}P^2$, we take $\mathbb{R}P^2=e^0\cup e^1\cup e^2$; and denoting $\partial e^2=\{e^{i\theta}\in\mathbb{C}|\ \theta\in[0,2\pi)\}$, $e^1=I$, we write
+     \begin{align*}
+         f^1(\partial e^1) &= e^0 \\ 
+         f^2(e^{i\theta})&= \begin{cases}\frac{\theta}{\pi},\ \forall\theta\in[0,\pi]\\ \frac{\theta-\pi}{\pi},\ \forall\theta\in(\pi,2\pi) \end{cases}
+     \end{align*}
+     \item For the Klein bottle $K$, we write $K=e^0\cup e^1_1\cup e^1_2\cup e^2$ and with the notation as earlier, 
+     \begin{align*}
+         f^1(\partial e^1_i) &= e^0, & [i=1,2]\\ 
+         f^2(e^{i\theta})&= \begin{cases}\frac{2\theta}{\pi}\in e^1_1,\ \forall\theta\in\left(0,\frac{\pi}{2}\right) \\ \frac{2\theta-\pi}{\pi}\in e^1_2,\ \forall\theta\in\left(\frac{\pi}{2},\pi\right)\\ \frac{2\theta-2\pi}{\pi}\in e^1_1,\ \forall\theta\in\left(\pi,\frac{3\pi}{2}\right)\\ \frac{4\pi-2\theta}{\pi}\in e^1_2,\ \forall\theta\in\left(\pi,2\pi\right) \\ e^0,\ \forall \theta =0,\frac{pi}{2},\pi,\frac{3\pi}{2} \end{cases}
+     \end{align*}
+\end{itemize} 
+\subsection{\normalsize{The sphere with $g$ handles, $g\geqslant 1$:}}
+We write the surface as $e^0\bigcup_{j=1}^{2g}{e^1_j}\cup e^2$ and write the maps as follows: \begin{align*}
+         f^1(\partial e^1_j) &= e^0, & [j=1,2,\dots 2g]\\ 
+         f^2(e^{i\theta})&= \begin{cases} \frac{2g\theta-(j-1)\pi}{\pi}\in e^1_j, \theta\in\left(\frac{(j-1)\pi}{2g},\frac{j\pi}{2g}\right),\ [j=1,2,\dots 2g] \\ \frac{j\pi-2g(\theta-\pi)}{\pi}\in e^1_j, \theta\in\left(\frac{\pi+(j-1)\pi}{2g},\pi+\frac{j\pi}{2g}\right),\ [j=1,2,\dots 2g] \\ e^0,\ \theta=\frac{m\pi}{2g};\ m\in\{1,2,\dots,4g-1\} \end{cases}
+     \end{align*}
+ \subsection{\normalsize{The projective plane with $g$ handles, $g\geqslant 1$:}}
+We write the surface as $e^0\bigcup_{j=1}^{2g+1}{e^1_j}\cup e^2$ and write the maps as follows: \begin{align*}
+         f^1(\partial e^1_j) &= e^0, & [j=1,2,\dots 2g+1]\\ 
+         f^2(e^{i\theta})&= \begin{cases} \frac{(2g+1)\theta-(j-1)\pi}{\pi}\in e^1_j, \theta\in\left(\frac{(j-1)\pi}{2g+1},\frac{j\pi}{2g+1}\right),\ [j=1,2,\dots 2g+1] \\ \frac{(2g+1)\theta}{\pi}-\pi\in e^1_1, \theta\in\left(\pi,\pi+\frac{\pi}{2g+1}\right)\\ \frac{j\pi-(2g+1)(\theta-\pi)}{\pi}\in e^1_j, \theta\in\left(\frac{\pi+(j-1)\pi}{2g+1},\pi+\frac{(j-1)\pi}{2g+1}\right),\ [j=2,\dots 2g+1] \\ e^0,\ \theta=\frac{m\pi}{2g+1};\ m\in\{1,2,\dots,4g+1\} \end{cases}
+     \end{align*}
+\subsection{\normalsize{The Klein bottle with $g$ handles, $g\geqslant 1$:}}
+We write the surface as $e^0\bigcup_{j=1}^{2g+2}{e^1_j}\cup e^2$ and write the maps as follows: \begin{align*}
+         f^1(\partial e^1_j) &= e^0, & [j=1,2,\dots 2g+2]\\ 
+         f^2(e^{i\theta})&= \begin{cases} \frac{(2g+2)\theta-(j-1)\pi}{\pi}\in e^1_j, \theta\in\left(\frac{(j-1)\pi}{2g+2},\frac{j\pi}{2g+2}\right),\ [j=1,2,\dots 2g+2] \\ \frac{(2g+1)\theta}{\pi}-\pi\in e^1_1, \theta\in\left(\pi,\pi+\frac{\pi}{2g+2}\right)\\ \frac{j\pi-(2g+2)(\theta-\pi)}{\pi}\in e^1_j, \theta\in\left(\frac{\pi+(j-1)\pi}{2g+2},\pi+\frac{(j-1)\pi}{2g+2}\right),\ [j=2,\dots 2g+1] \\ e^0,\ \theta=\frac{m\pi}{2g+2};\ m\in\{1,2,\dots,4g+3\} \end{cases}
+     \end{align*}
+     
+\section{\normalsize{Lecture 5, Exercises 18, 21:}}
+\begin{clm}
+     Take $X$ topological space, $n\in \mathbb{N}$. Then the following are equivalent:
+     \begin{enumerate}
+          \item $\pi(S^q,X)$ has one element $\forall q\leqslant n$.
+          \item $\pi_b(S^q,X)$ has one element $\forall q\leqslant n$.
+          \item $\forall q\leqslant n$, any map $f:S^q\rightarrow X$ extends to a map $F:D^{q+1}\rightarrow X$, $F|_{\partial D^{q+1}}=f$
+     \end{enumerate}
+\end{clm}
+\textbf{\emph{Proof:}}
+$\mathit{(2)\Rightarrow(1)}$ We write $Map_b(S^q,X)\rightarrow Map(S^q,X)\rightarrow \pi(S^q,X)$, where the first map is the natural inclusion map and the second is the quotient map. $f\sim_b g\ \Rightarrow f\sim g$ so this gives us a map $\pi_b(S^q,X)\xrightarrow{h} \pi(S^q,X)$. \\ 
+We consider $S^q\subseteq \mathbb{R}^{q+1}$, with its base-point at $s_0=(0,0,\dots,-1)$.\\ Take any map $f:S^q\rightarrow X$, let $f(s_0)=x$. $\exists p:[0,1]\rightarrow X;\ p(0)=x,\ p(1)=x_0$. Define $\tilde{f}:S^q\rightarrow X$ by $$\tilde{f}(r_1,r_2,\dots,r_{q+1}):=\begin{cases}f(r_1,r_2,\dots, 2r_{q+1}-1),\ \forall r_{q+1}\geqslant 0;\\ p(-r_{q+1}),\ \forall r_{q+1}\leqslant 0\end{cases}$$ Pasting lemma ensures continuity of $\tilde{f}$, and $\tilde{f}(s_0)=x_0$. In fact $f\sim\tilde{f}$ by the homotopy $H: S^q\times I \rightarrow X$ given by: $$H((r_1,r_2,\dots,r_{q+1}),t):= \begin{cases}f\left(r_1,r_2,\dots,\frac{2r_{q+1}-t}{2-t} \right),\ \forall r_{q+1}\geqslant t-1;\\ p(-r_{q+1}+t-1),\ \forall r_{q+1}\leqslant t-1\end{cases}$$ with $H(s,0)=f(s),\ H(s,1)=\tilde{f}(s)$. \\ Therefore, $h([\tilde{f}]_b)=[f]$, and thus $h$ is surjective. $\blacksquare$ \\[10pt]
+$\mathit{(1)\Rightarrow (3)}$ The constant map $f_0:S^q\rightarrow X$, $f_0\equiv x_0$ is continuous. $(1)$ tells us that any map $f:S^q\rightarrow X$ is homotopic to $f_0$. We call that homotopy $H_f:S^q\times I\rightarrow X$, $H_f(s,0)=f_0(s)=x_0$, $H_f(s,1)=f(s)$. \\ $H_f$ defines a continuous map $F$ from the cone over $S^q$ to $X$, equalling $f$ on its base. Noting that $D^{q+1}$ is homeomorphic to the cone over $S^q$ with its boundary identified with the base, $F$ is our desired map. $\blacksquare$ \\[10pt]
+$\mathit{(3)\Rightarrow (2)}$ We note that $f_0\in Map_b(S^q,X)$. Take any $f\in Map_b(S^q,X)$, and extend it to $F$ as in $(3)$. Then,treating $S^q\subset D^{q+1}\subset\mathbb{R}^{q+1}$, we define $H:S^q\times I\rightarrow X$ as follows: $$H((r_1,r_2,\dots,r_{q+1}),t):=F(tr_1,tr_2,\dots, tr_{q+1}+t-1)$$ $H(s_0,t)=F(s_0)=f(s_0)=x_0\ \forall t\in I$, $H(s,0)=f_0(s)$, $H(s,1)=f(s)$, so $f\sim_b f_0$. Therefore, $\pi_b(S^q,X)$ has one element. $\blacksquare$
+\begin{defn}
+     $X$ is called $n$-connected iff $\forall q\leqslant n$, any map $f:S^q\rightarrow X$ extends to a map $F:D^{q+1}\rightarrow X$, $F|_{\partial D^{q+1}}=f$.
+\end{defn}
+\begin{clm}
+     Take $(X,A)$ be a pair of topological spaces, $A\subseteq X$; $n\in \mathbb{Z}_+$. Then the following are equivalent:
+     \begin{enumerate}
+          \item $\pi((D^q,S^{q-1}),(X,A))\cong\pi(*,A)$  $\forall q\leqslant n$.
+          \item $\forall q\leqslant n$, any map $f:(D^q,S^{q-1})\rightarrow (X,A)$ is homotopic to a map $F:(D^q,S^{q-1})\rightarrow (X,A)$, with $F(D^q)\subseteq A$. 
+     \end{enumerate}
+\end{clm} 
+\textbf{\emph{Proof:}} $\forall a\in \pi(*,A)$, we fix $x_a\in [a]$ , and define the constant map $f_a:(D^q,S^{q-1})\rightarrow (X,A)$, $f_a\equiv x_a(*)$. \\[10pt]
+$\mathit{(1)\Rightarrow(2)}$ Any map $f:(D^q,S^{q-1})\rightarrow (X,A)$ is homotopic to some $f_a$, $a\in\pi(*,A)$, and $f_a$ has the required property. $\blacksquare$ \\[10pt] 
+$\mathit{(2)\Rightarrow(1)}$ We have $Map(*,A)\rightarrow Map((D^q,S^{q-1}),(X,A))\rightarrow\pi((D^q,S^{q-1}),(X,A))$ with the first map being the natural inclusion and the second being the quotient map. Clearly an $A$-path is an $(X,A)$ homotopy of maps, so this gives us a continuous map $\pi(*,A)\xrightarrow{h}\pi((D^q,S^{q-1}),(X,A))$. \\
+Any map $f:(D^q,S^{q-1})\rightarrow (X,A)$ is $(X,A)$ homotopic to $F:(D^q,S^{q-1})\rightarrow (X,A)$ with $F(D^q)\subseteq A$. We treat $D^q\subset\mathbb{R}^q$ and define $H:(D^q,S^{q-1})\times I\rightarrow (X,A)$ by: $$H((r_1,r_2\dots,r_q),t)=F(t(r_1,r_2,\dots,r_q))$$ with $H(S^q,t)\subseteq A\ \forall t\in I$ and $H(0)$ being the constant map to $F(0)$ and $H(1)$ being $F$. Thus $f\sim_{(X,A)}F\sim_{(X,A)}x_{F(0)}$. Therefore, $h$ is surjective. \\ 
+If $x_a\sim_{(X,A)}x_b$ by a $(X,A)$-homotopy $H:(D^q,S^{q-1})\times I\rightarrow (X,A)$ with $a,b\in A$; then $H$ restricts to a map $\Sigma S^{q-1}\rightarrow A$ with the two end-points mapping to $x_a$ and $x_b$. Since $\Sigma S^{q-1}$ is path-connected, this gives us a path from $x_a$ to $x_b$ in $A$. \\ So, $x_a\sim_{(X,A)}x_b\ \Rightarrow x_a\sim_{A}x_b$, \emph{i.e.} $h$ is injective too. \\ 
+We therefore have a continuous bijection $\pi(*,A)\xrightarrow{h}\pi((D^q,S^{q-1}),(X,A))$. Is the inverse continuous?? $\blacksquare$
+\begin{defn}
+     $(X,A)$ is called $n$-connected pair iff $\forall q\leqslant n$, any map $f:(D^q,S^{q-1})\rightarrow (X,A)$ is homotopic to a map $F:(D^q,S^{q-1})\rightarrow (X,A)$, with $F(D^q)\subseteq A$. 
+\end{defn}
+\begin{rem}
+     Clearly, $X$ is $n$-connected iff $(X,x_0)$ is an $n$-connected pair for some $x_0\in X$. The choice of $x_0$ is also immaterial.
+\end{rem}
+\begin{rem}
+     $(Map(S^q,X),Map_b(S^q,X))$ is an $n$-connected pair $\forall q\geqslant n$ iff $X$ is $n$-connected.
+\end{rem}
+
+
+
+
+\end{document}
